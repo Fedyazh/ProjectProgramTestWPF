@@ -1,0 +1,21 @@
+﻿<Window x:Class="ProjectProgramTestWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectProgramTestWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Canvas Background="Lavender">
+            <TextBlock Canvas.Left="69" Canvas.Top="79">Имя</TextBlock>
+            <TextBlock Canvas.Left="69" Canvas.Top="111">Фамилия</TextBlock>
+            <TextBlock Canvas.Left="69" Canvas.Top="150">Группа</TextBlock>
+            <TextBox x:Name="TextBox_Name" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="188" Canvas.Top="74">Имя</TextBox>
+            <TextBox x:Name="TextBox_SubName" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="188" Canvas.Top="106">Фамилия</TextBox>
+            <TextBox x:Name="TextBox_Group" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="188" Canvas.Top="145">Группа</TextBox>
+            <Button x:Name="Button_DonwloadTest" Background="AliceBlue" Content="Загрузить тест" Canvas.Top="221" Canvas.Left="80" Click="Button_DonwloadTest_Click" />
+            <Button x:Name="Button_StartTest" Background="LightSkyBlue" Content="Старт" Canvas.Top="221" Canvas.Right="20" Canvas.Left="345"/>
+        </Canvas>
+    </Grid>
+</Window>
