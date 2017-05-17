@@ -8,10 +8,15 @@ using System.Windows;
 
 namespace ProjectProgramTestWPF
 {
+   
+
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
     public partial class App : Application
     {
+        internal static ParseFile obj;
+       
+
     }
 }

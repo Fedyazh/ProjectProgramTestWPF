@@ -23,21 +23,25 @@ namespace ProjectProgramTestWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         public MainWindow()
         {
-            InitializeComponent();
-        }
 
+            InitializeComponent();
+
+
+        }
         private async void Button_DonwloadTest_Click(object sender, RoutedEventArgs e)
         {
-            Stream myStream = null;
+           /* Stream myStream = null;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             /*Возвращает или задает текущую строку фильтра имен файлов, которая определяет варианты, 
             которые появляются в окне "сохранить как тип файла" или "файлы типа" в диалоговом окне. 
-            */
+            
             openFileDialog1.FilterIndex = 2; //Возвращает или задает индекс фильтра, выбранного в настоящий момент в диалоговом окне файла.
             openFileDialog1.RestoreDirectory = true;
 
@@ -45,32 +49,49 @@ namespace ProjectProgramTestWPF
 
             if (openFileDialog1.ShowDialog() == true)//Comment
             {
-                try
-                {
+               try
+               {
                     if ((myStream = openFileDialog1.OpenFile()) != null)
+                     {
+                    */
+                    using (StreamReader sr = new StreamReader("C:\\Users\\Фёдор\\Desktop\\Test.json"))//myStream))
                     {
-                        using (StreamReader sr = new StreamReader(myStream))
-                        {
 
-                            string L = await sr.ReadToEndAsync();
-                            ParseFile obj = JsonConvert.DeserializeObject<ParseFile>(L);
+                        Button_StartTest.IsEnabled = true;
 
-                            Console.WriteLine(obj.Questions[0].Answers[0].QAValue);
-                            TextBox_Name.Text = obj.Questions[0].Answers[0].QAValue;
+                        string L = await sr.ReadToEndAsync();
+                        App.obj = JsonConvert.DeserializeObject<ParseFile>(L);
 
-                            // Insert code to read the stream here.
-                        }
+                        TextBox_Name.Text = App.obj.Questions[0].Answers[0].QAValue;
+
+
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-                }
-            }
+                   /*}
+              //  }
+             //   catch (Exception ex)
+             //   {
+               //     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+             //   }
+            }*/
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+        }
+
+        private void Button_StartTest_Click(object sender, RoutedEventArgs e)
+        {
+            App.obj.StudentName = TextBox_Name.Text;
+            App.obj.Group = TextBox_Group.Text;
+            Console.WriteLine(App.obj.Questions[0].Answers[0].QAValue);
+            Console.WriteLine(App.obj.Group);
+            Window_Test wn = new Window_Test();
+            this.Hide();
+            wn.Show();
+            this.Close();
+
+
 
         }
     }
