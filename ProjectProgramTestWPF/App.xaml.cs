@@ -15,7 +15,7 @@ namespace ProjectProgramTestWPF
     /// </summary>
     public partial class App : Application
     {
-        internal static ParseFile obj;
+        internal static ParseFile obj = new ParseFile();
        
 
     }

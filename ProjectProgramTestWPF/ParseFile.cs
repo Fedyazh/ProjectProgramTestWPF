@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace ProjectProgramTestWPF
 {
-    class ParseFile : INotifyPropertyChanged
+    class ParseFile 
     {
-        public event PropertyChangedEventHandler PropertyChanged; // Событие, которое нужно вызывать при изменении
-        // Для удобства обернем событие в метод с единственным параметром - имя изменяемого свойства
-        public void RaisePropertyChanged(string propertyName)
-        {
-            // Если кто-то на него подписан, то вызывем его
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        
         [JsonProperty("TeacherName")]
         public string TeacherName { get; set; }
         [JsonProperty("StudentName")]
@@ -49,11 +43,11 @@ namespace ProjectProgramTestWPF
         [JsonProperty("isRight")]
         public bool QAisRight { get; set; }
         [JsonProperty("Answers")]
-        public List<Answers> Answers;
+        public List<Answer> Answers;
 
     }
 
-    class Answers
+    class Answer
     {
         [JsonProperty("Type")]
         public string QAType { get; set; }
