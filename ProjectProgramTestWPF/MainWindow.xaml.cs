@@ -62,17 +62,21 @@ namespace ProjectProgramTestWPF
                         string L = await sr.ReadToEndAsync();
                         App.obj = JsonConvert.DeserializeObject<ParseFile>(L);
 
-                        TextBox_Name.Text = App.obj.Questions[0].Answers[0].QAValue;
+                   
+                
 
 
-                    }
-                   /*}
-              //  }
-             //   catch (Exception ex)
-             //   {
-               //     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
-             //   }
-            }*/
+
+            }
+            /*}
+       //  }
+      //   catch (Exception ex)
+      //   {
+        //     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+      //   }
+     }*/
+            //App.obj.StudentName = TextBox_Name.Text;
+           // App.obj.Group = TextBox_Group.Text;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,9 +86,10 @@ namespace ProjectProgramTestWPF
 
         private void Button_StartTest_Click(object sender, RoutedEventArgs e)
         {
-            App.obj.StudentName = TextBox_Name.Text;
-            App.obj.Group = TextBox_Group.Text;
-            Console.WriteLine(App.obj.Questions[0].Answers[0].QAValue);
+        
+           
+          App.obj.StudentName = TextBox_Name.Text;
+          App.obj.Group = TextBox_Group.Text;
             Console.WriteLine(App.obj.Group);
             Window_Test wn = new Window_Test();
             this.Hide();

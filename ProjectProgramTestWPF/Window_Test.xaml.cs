@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,38 +20,44 @@ namespace ProjectProgramTestWPF
     /// </summary>
     public partial class Window_Test : Window
     {
-        private int u;
+        private int u = 0;
 
         public Window_Test()
         {
-            u = 0;
-           
+            
+            this.DataContext = App.obj.Questions[u].Answers;
             InitializeComponent();
-            DataContext = App.obj;
-            Page_Test page = new Page_Test(u);
-            Frame.NavigationService.Navigate(page);
+            label.Content = App.obj.Questions[u].QTopic;
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-          
-
-                u = u + 1;
-
-            Console.WriteLine(u);
-                Page_Test page = new Page_Test(u);
-                Frame.NavigationService.Navigate(page);
-            if (u == App.obj.Questions.Count-1)
+            
+           
+            u = u + 1;
+            
+            if (u == App.obj.Questions.Count - 1)
             {
-
                 button_Continue.IsEnabled = false;
                 button_Exit.IsEnabled = true;
-
+                label.Content = App.obj.Questions[u].QTopic;
+                this.DataContext = App.obj.Questions[u].Answers;//
             }
-        
-            
+            else
+            {
+                label.Content = App.obj.Questions[u].QTopic;
+                this.DataContext = App.obj.Questions[u].Answers;
+            }
+                                 
         }
 
-
+        private void button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            string output = JsonConvert.SerializeObject(App.obj, Formatting.Indented);
+            ParseFile bb = JsonConvert.DeserializeObject<ParseFile>(output);
+            this.Close();
+        }
+        
     }
 }
