@@ -12,13 +12,16 @@ namespace ProjectProgramTestWPF
 {
     class ParseFile 
     {
+       
         
         [JsonProperty("TeacherName")]
         public string TeacherName { get; set; }
+      
         [JsonProperty("StudentName")]
         public string StudentName { get; set; }
+        public string StudentPastName { get; set; }
         [JsonProperty("Group")]
-        public string Group { get; set; }
+        public string Group { get;set;  }
         [JsonProperty("PercentAnsw")]
         public string PercentAnsw { get; set; }
         [JsonProperty("TopicQuestion")]

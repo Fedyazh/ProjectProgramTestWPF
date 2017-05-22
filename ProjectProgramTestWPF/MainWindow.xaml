@@ -6,13 +6,35 @@
         xmlns:local="clr-namespace:ProjectProgramTestWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="275.769">
+    
+    <Window.Resources>
+        
+    </Window.Resources>
     <Grid>
         <Canvas Background="Lavender">
 
             <TextBlock Canvas.Left="69" Canvas.Top="79">Имя</TextBlock>
             <TextBlock Canvas.Left="69" Canvas.Top="112">Группа</TextBlock>
-            <TextBox x:Name="TextBox_Name" Text="{Binding Path= StudentName}" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="173" Canvas.Top="81" Width="56"></TextBox>
-            <TextBox x:Name="TextBox_Group" Text="{Binding Path= Group}"  MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="173" Canvas.Top="112" Width="56"></TextBox>
+            <TextBox x:Name="TextBox_Name" 
+                Text="{Binding Path= StudentName}" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="173" Canvas.Top="81" Width="56" PreviewTextInput="TextInputEvent"> </TextBox>
+            <TextBox   x:Name="TextBox_Group" MaxLength="250" TextChanged="TextBox_TextChanged" RenderTransformOrigin="1.841,3.765" Canvas.Left="173" Canvas.Top="112" Width="56"  >
+                <TextBox.Text>
+                    <Binding Path= "Group" NotifyOnValidationError="True">
+                          <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules> 
+                    </Binding>
+                </TextBox.Text>
+                 <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate> 
+            </TextBox>
             <Button x:Name="Button_DonwloadTest" Background="AliceBlue" Content="Загрузить тест" Canvas.Top="221" Canvas.Left="69" Click="Button_DonwloadTest_Click" />
             <Button x:Name="Button_StartTest" Background="LightSkyBlue" Content="Старт" Canvas.Top="221" Canvas.Right="20" Canvas.Left="210" IsEnabled="False" Click="Button_StartTest_Click"/>
         </Canvas>

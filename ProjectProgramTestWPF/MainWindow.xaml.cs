@@ -23,6 +23,7 @@ namespace ProjectProgramTestWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        
 
 
         public MainWindow()
@@ -30,6 +31,7 @@ namespace ProjectProgramTestWPF
 
             InitializeComponent();
 
+            this.DataContext = App.obj;
 
         }
         private async void Button_DonwloadTest_Click(object sender, RoutedEventArgs e)
@@ -62,7 +64,6 @@ namespace ProjectProgramTestWPF
                         string L = await sr.ReadToEndAsync();
                         App.obj = JsonConvert.DeserializeObject<ParseFile>(L);
 
-                   
                 
 
 
@@ -75,21 +76,17 @@ namespace ProjectProgramTestWPF
         //     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
       //   }
      }*/
-            //App.obj.StudentName = TextBox_Name.Text;
-           // App.obj.Group = TextBox_Group.Text;
+          
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+       
 
         private void Button_StartTest_Click(object sender, RoutedEventArgs e)
         {
-        
-           
-          App.obj.StudentName = TextBox_Name.Text;
-          App.obj.Group = TextBox_Group.Text;
+            Console.WriteLine(App.obj.Group);
+
+            App.obj.StudentName = TextBox_Name.Text;
+            App.obj.Group = TextBox_Group.Text;
             Console.WriteLine(App.obj.Group);
             Window_Test wn = new Window_Test();
             this.Hide();
@@ -98,6 +95,15 @@ namespace ProjectProgramTestWPF
 
 
 
+        }
+
+        private void TextInputEvent(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Handled = "0123456789 ,./)(+=_*!@#$%^&*;%:?|".IndexOf(e.Text) > 0)
+            {
+                Console.WriteLine("OP");
+                
+            }
         }
     }
 }

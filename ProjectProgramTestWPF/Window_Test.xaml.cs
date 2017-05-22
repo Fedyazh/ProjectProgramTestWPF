@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +58,22 @@ namespace ProjectProgramTestWPF
         {
             string output = JsonConvert.SerializeObject(App.obj, Formatting.Indented);
             ParseFile bb = JsonConvert.DeserializeObject<ParseFile>(output);
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "Текстик (*.txt)|*.txt";
+            saveFileDialog1.FileName = "Test.json";
+
+            if (saveFileDialog1.ShowDialog() == true)
+            {
+                using (StreamWriter sw = new StreamWriter(saveFileDialog1.OpenFile(), System.Text.Encoding.Default))
+                {
+                    sw.Write(bb);
+                    sw.Close();
+                }
+            }
+
+
             this.Close();
         }
         
